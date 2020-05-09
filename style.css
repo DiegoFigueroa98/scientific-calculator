@@ -2,4 +2,105 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-weight: 320;
+  border-color: transparent;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 0;
+}
+
+.main-wrapper {
+  display: grid;
+  grid-column: auto;
+  grid-row: auto;
+  height: 100vh;
+  width: 100vw;
+  background: #11998e; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #38ef7d,
+    #11998e
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #38ef7d,
+    #11998e
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.calculator-wrapper {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-row: auto;
+  align-self: center;
+  justify-self: center;
+  padding: 2vw;
+  background: rgb(204, 204, 204);
+  height: 90%;
+  width: 35%;
+}
+
+.main-screen {
+  grid-column: 1/-1;
+  font-weight: 500;
+  font-size: 2.5vw;
+  margin-bottom: 1vw;
+  padding: 0.3vw 1vw;
+}
+
+.second-screen {
+  grid-column: 1/-1;
+  font-weight: 500;
+  font-size: 2vw;
+  margin-bottom: 2vw;
+  padding: 0vw 1vw;
+}
+
+button {
+  background-color: whitesmoke;
+  color: black;
+}
+
+input {
+  padding: 0.3vw 1vw;
+  background-color: white;
+}
+
+.double {
+  grid-column: span 2;
+}
+
+.complex-operation {
+  background-color: #2e9a80;
+  font-size: 1.5vw;
+  color: white;
+}
+
+.numbers,
+.period {
+  background-color: #4b4b4b;
+  font-size: 2vw;
+  font-weight: 450;
+  color: white;
+}
+
+.basic-operation {
+  background-color: #777777;
+  font-size: 2vw;
+  color: white;
+  font-weight: 450;
+}
+
+.percent,
+.degrees,
+.parenthesis {
+  background-color: #e4e4e4;
+  color: black;
+  font-size: 1.5vw;
+  font-weight: 450;
+}
+
+.triggers {
+  background-color: #e4e4e4;
+  font-size: 1.5vw;
+  font-weight: 450;
 }

@@ -1,4 +1,5 @@
-var display = document.getElementById("screen");
+var mainScreen = document.getElementById("main-screen");
+var secondScreen = document.getElementById("second-screen");
 var buttons = document.getElementsByClassName("button");
 
 Array.prototype.forEach.call(buttons, function (button) {
@@ -31,7 +32,7 @@ Array.prototype.forEach.call(buttons, function (button) {
       button.textContent != "rad" &&
       button.textContent != "Deg"
     ) {
-      display.value += button.textContent;
+      secondScreen.value += button.textContent;
     } else if (button.textContent === "=") {
       equals();
     } else if (button.textContent === "Borrar") {
@@ -90,137 +91,169 @@ Array.prototype.forEach.call(buttons, function (button) {
 
 function syntaxError() {
   if (
-    eval(display.value) == SyntaxError ||
-    eval(display.value) == ReferenceError ||
-    eval(display.value) == TypeError
+    eval(secondScreen.value) == SyntaxError ||
+    eval(secondScreen.value) == ReferenceError ||
+    eval(secondScreen.value) == TypeError
   ) {
-    display.value == "Syntax Error";
+    secondScreen.value == "Syntax Error";
   }
 }
 
 function equals() {
-  if (display.value.indexOf("^") > -1) {
-    var base = display.value.slice(0, display.value.indexOf("^"));
-    var exponent = display.value.slice(display.value.indexOf("^") + 1);
-    display.value = eval("Math.pow(" + base + "," + exponent + ")");
+  if (secondScreen.value.indexOf("^") > -1) {
+    var base = secondScreen.value.slice(0, secondScreen.value.indexOf("^"));
+    var exponent = secondScreen.value.slice(
+      secondScreen.value.indexOf("^") + 1
+    );
+    secondScreen.value = eval("Math.pow(" + base + "," + exponent + ")");
+    mainScreen.value = secondScreen.value;
   } else {
-    display.value = eval(display.value);
+    secondScreen.value = eval(secondScreen.value);
+    mainScreen.value = secondScreen.value;
     checkLength();
     syntaxError();
   }
 }
 
 function clear() {
-  display.value = "";
+  secondScreen.value = "";
+  mainScreen.value = "";
 }
 
 function backspace() {
-  display.value = display.value.substring(0, display.value.length - 1);
+  secondScreen.value = secondScreen.value.substring(
+    0,
+    secondScreen.value.length - 1
+  );
 }
 
 function multiply() {
-  display.value += "*";
+  secondScreen.value += "*";
 }
 
 function divide() {
-  display.value += "/";
+  secondScreen.value += "/";
 }
 
 function plusMinus() {
-  if (display.value.charAt(0) === "-") {
-    display.value = display.value.slice(1);
+  if (secondScreen.value.charAt(0) === "-") {
+    secondScreen.value = secondScreen.value.slice(1);
+    mainScreen.value = secondScreen.value;
   } else {
-    display.value = "-" + display.value;
+    secondScreen.value = "-" + secondScreen.value;
+    mainScreen.value = secondScreen.value;
   }
 }
 
 function factorial() {
   var number = 1;
-  if (display.value === 0) {
-    display.value = "1";
-  } else if (display.value < 0) {
-    display.value = "undefined";
+  if (secondScreen.value === 0) {
+    secondScreen.value = "1";
+  } else if (secondScreen.value < 0) {
+    secondScreen.value = "undefined";
   } else {
     var number = 1;
-    for (var i = display.value; i > 0; i--) {
+    for (var i = secondScreen.value; i > 0; i--) {
       number *= i;
     }
-    display.value = number;
+    secondScreen.value = number;
+    mainScreen.value = secondScreen.value;
   }
 }
 
 function pi() {
-  display.value = display.value * Math.PI;
+  secondScreen.value = secondScreen.value * Math.PI;
+  mainScreen.value = secondScreen.value;
 }
 
 function square() {
-  display.value = eval(display.value * display.value);
+  secondScreen.value = eval(secondScreen.value * secondScreen.value);
+  mainScreen.value = secondScreen.value;
 }
 
 function squareRoot() {
-  display.value = Math.sqrt(display.value);
+  secondScreen.value = Math.sqrt(secondScreen.value);
+  mainScreen.value = secondScreen.value;
 }
 
 function percent() {
-  display.value = display.value / 100;
+  secondScreen.value = secondScreen.value / 100;
+  mainScreen.value = secondScreen.value;
 }
 
 function sin() {
-  display.value = Math.sin(display.value);
+  secondScreen.value = Math.sin(secondScreen.value * (Math.PI / 180));
+  mainScreen.value = secondScreen.value;
 }
 
 function asin() {
-  display.value = Math.asin(display.value);
+  secondScreen.value = Math.asin(secondScreen.value);
+  secondScreen.value *= (180 / Math.PI);
+  mainScreen.value = secondScreen.value;
 }
 
 function cos() {
-  display.value = Math.cos(display.value);
+  secondScreen.value = Math.cos(secondScreen.value * (Math.PI / 180))
+  mainScreen.value = secondScreen.value;
 }
 
 function acos() {
-  display.value = Math.acos(display.value);
+  secondScreen.value = Math.acos(secondScreen.value);
+  secondScreen.value *= (180 / Math.PI);
+  mainScreen.value = secondScreen.value;
 }
 
 function tan() {
-  display.value = Math.tan(display.value);
+  secondScreen.value = Math.tan(secondScreen.value * (Math.PI / 180));
+  mainScreen.value = secondScreen.value;
 }
 
 function atan() {
-  display.value = Math.atan(display.value);
+  secondScreen.value = Math.atan(secondScreen.value);
+  secondScreen.value *= (180 / Math.PI);
+  mainScreen.value = secondScreen.value;
 }
 
 function log() {
-  display.value = Math.log10(display.value);
+  secondScreen.value = Math.log10(secondScreen.value);
+  mainScreen.value = secondScreen.value;
 }
 
 function ln() {
-  display.value = Math.log(display.value);
+  secondScreen.value = Math.log(secondScreen.value);
+  mainScreen.value = secondScreen.value;
 }
 
 function exponent() {
-  display.value += "^";
+  secondScreen.value += "^";
 }
 
 function exp() {
-  display.value = Math.exp(display.value);
+  secondScreen.value = Math.exp(secondScreen.value);
+  mainScreen.value = secondScreen.value;
 }
 
 function radians() {
-  display.value = display.value * (Math.PI / 180);
+  secondScreen.value = secondScreen.value * (Math.PI / 180);
+  mainScreen.value = secondScreen.value;
 }
 
 function degrees() {
-  display.value = display.value * (180 / Math.PI);
+  secondScreen.value = secondScreen.value * (Math.PI / 180);
+  mainScreen.value = secondScreen.value;
 }
 
 function antilog() {
-  display.value = Math.pow(10, display.value);
+  secondScreen.value = Math.pow(10, secondScreen.value);
+  mainScreen.value = secondScreen.value;
 }
 
 function inverse() {
-  display.value = 1 / display.value;
+  secondScreen.value = 1 / secondScreen.value;
+  mainScreen.value = secondScreen.value;
 }
 
 function perMillion() {
-  display.value = display.value / 1000000;
+  secondScreen.value = secondScreen.value / 1000000;
+  mainScreen.value = secondScreen.value;
 }
